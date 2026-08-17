@@ -2,8 +2,11 @@ import subprocess
 import json
 import time
 import os
+from pathlib import Path
 
-with open("rwi.json", "r") as f:
+RWI_PATH = Path("~/.config/rwi.json").expanduser()
+
+with open(RWI_PATH, "r") as f:
     settings = json.load(f)
 
 if settings["notify_on_start"]: subprocess.run(
@@ -16,17 +19,20 @@ def window_check_and_kill(window_name, word_list):
     
 
 while True:
-    result = subprocess.run(
-        ["hyprctl", "activewindow"],
-        capture_output=True,
-        text=True
-    ).stdout.splitlines()
+    try:
+        result = subprocess.run(
+            ["hyprctl", "activewindow"],
+            capture_output=True,
+            text=True
+        ).stdout.splitlines()
 
-    current_window = result[11].split("title:", 1)[1]
+        current_window = result[11].split("title:", 1)[1]
 
-    window_check_and_kill(current_window, settings["blocked"])
+        window_check_and_kill(current_window, settings["blocked"])
 
-    if (settings["is_work_mode_active"]):
-        window_check_and_kill(current_window, settings["work_block"])
-    
-    time.sleep(0.5)
+        if (settings["is_work_mode_active"]):
+            window_check_and_kill(current_window, settings["work_block"])
+        
+        time.sleep(0.5)
+    except:
+        continue

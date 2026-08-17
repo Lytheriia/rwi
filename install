@@ -21,6 +21,9 @@ sudo chmod +x /usr/bin/rwi
 
 sudo cp -r ./rwi.service ~/.config/systemd/user/
 
+systemctl --user daemon-reload
+systemctl --user enable --now rwi.service
+
 echo -e "\033[32mPlease edit ~/.config/rwi.json\033[0m"
 echo -e "RWI installed"
 
