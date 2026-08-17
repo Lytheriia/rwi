@@ -16,14 +16,13 @@ mkdir -p ~/.config/hypr/custom/scripts
 cp -r ./rwi.json ~/.config/
 cp -r ./rwi.py ~/.config/hypr/custom/scripts/
 
-echo -e "\033[32mPlease edit ~/.config/rwi.json\033[0m"
-
 sudo cp -r ./rwi /usr/bin/
 sudo chmod +x /usr/bin/rwi
 
 sudo cp -r ./rwi.service ~/.config/systemd/user/
 
+echo -e "\033[32mPlease edit ~/.config/rwi.json\033[0m"
 echo -e "RWI installed"
 
 cd ..
-sudo rm -r ~/.cache/rwi
+rm -rf ~/.cache/rwi
