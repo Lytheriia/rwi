@@ -19,7 +19,7 @@ cp -r ./rwi.py ~/.config/hypr/custom/scripts/
 echo -e "\033[32mPlease edit ~/.config/rwi.json\033[0m"
 
 sudo cp -r ./rwi /usr/bin/
-sudo chmod +x /usr/bin/rwi.bash
+sudo chmod +x /usr/bin/rwi
 
 sudo cp -r ./rwi.service ~/.config/systemd/user/
 
